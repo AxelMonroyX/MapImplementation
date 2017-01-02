@@ -21,7 +21,7 @@ public class AxelMap<K, V> implements Map {
     }
 
     public boolean isEmpty() {
-        return false;
+        return size == 0;
     }
 
     public boolean containsKey(Object o) {
@@ -57,8 +57,8 @@ public class AxelMap<K, V> implements Map {
         MyEntry<K, V> entry = buckets[bucketIndex];
         if (entry != null) {
             boolean done = false;
-            while (!done && entry!= null) {
-                if ( key.equals(entry.getKey())) {
+            while (!done && entry != null) {
+                if (key.equals(entry.getKey())) {
                     entry.setValue(value);
                 } else if (entry.getNext() == null) {
                     entry.setNext(new MyEntry<K, V>(key, value));
