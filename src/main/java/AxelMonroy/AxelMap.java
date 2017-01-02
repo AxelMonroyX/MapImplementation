@@ -109,6 +109,8 @@ public class AxelMap<K, V> implements Map {
     }
 
     public void clear() {
+        this.size = 0;
+        buckets = new MyEntry[10];
 
     }
 
