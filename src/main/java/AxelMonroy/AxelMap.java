@@ -85,8 +85,23 @@ public class AxelMap<K, V> implements Map {
     }
 
 
-    public Object remove(Object o) {
-        return null;
+    public Object remove(Object key_x) {
+        K key = (K) key_x;
+        if (key == null) {
+            throw new IllegalArgumentException("Key cannot be null");
+        }
+        int bucketIndex = key.hashCode() % buckets.length;
+        MyEntry<K, V> entry = buckets[bucketIndex];
+
+        while (entry != null && !key.equals(entry.getKey())) {
+            entry = entry.getNext();
+        }
+        if (entry != null) {
+            size--;
+            entry.setValue(null);
+        }
+        return entry != null ? entry.getValue() : null;
+
     }
 
     public void putAll(Map map) {
