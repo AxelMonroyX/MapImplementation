@@ -1,4 +1,4 @@
-package github.com.AxelMonroyX;
+package AxelMonroy;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

@@ -1,4 +1,4 @@
-package github.com.AxelMonroyX;
+package AxelMonroy;
 
 import java.util.Collection;
 import java.util.Map;
