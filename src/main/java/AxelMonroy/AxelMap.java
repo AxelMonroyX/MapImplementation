@@ -24,16 +24,17 @@ public class AxelMap<K, V> implements Map {
         return size == 0;
     }
 
-    public boolean containsKey(Object o) {
-        return false;
+    public boolean containsKey(Object key) {
+
+        return get(key) != null;
     }
 
     public boolean containsValue(Object o) {
         return false;
     }
 
-    public Object get(Object keyx) {
-        K key = (K) keyx;
+    public Object get(Object key_x) {
+        K key = (K) key_x;
         if (key == null) {
             throw new IllegalArgumentException("Key cannot be null");
         }
@@ -46,9 +47,9 @@ public class AxelMap<K, V> implements Map {
         return entry != null ? entry.getValue() : null;
     }
 
-    public Object put(Object keyx, Object valuex) {
-        K key = (K) keyx;
-        V value = (V) valuex;
+    public Object put(Object key_x, Object value_x) {
+        K key = (K) key_x;
+        V value = (V) value_x;
 
         if (key == null) {
             throw new IllegalArgumentException("Key cannot be null");
@@ -72,7 +73,7 @@ public class AxelMap<K, V> implements Map {
             buckets[bucketIndex] = new MyEntry<K, V>(key, value);
             size++;
         }
-        return new MyEntry(key, value);
+        return new MyEntry<K, V>(key, value);
     }
 
 
