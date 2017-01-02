@@ -1,6 +1,7 @@
 package AxelMonroy;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -105,6 +106,11 @@ public class AxelMap<K, V> implements Map {
     }
 
     public void putAll(Map map) {
+        Iterator<Map.Entry<Object, Object>> it = map.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry<Object, Object> actual = it.next();
+            put(actual.getKey(), actual.getValue());
+        }
 
     }
 

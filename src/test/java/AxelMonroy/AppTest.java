@@ -110,4 +110,20 @@ public class AppTest
         assertEquals(0, map.size());
 
     }
+
+    public void testputAll() throws Exception {
+        Map map_1 = new HashMap();
+        Map<Integer, String> map_2 = new AxelMap<Integer, String>();
+        map_2.putAll(map_1);
+        map_1.put(1, "value1");
+        map_1.put(2, "value2");
+        map_2.putAll(map_1);
+
+
+        assertEquals("value1", map_2.get(1));
+        assertEquals("value2", map_2.get(2));
+        assertFalse(map_2.isEmpty());
+        assertEquals(2, map_2.size());
+
+    }
 }
