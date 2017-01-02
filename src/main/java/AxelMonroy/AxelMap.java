@@ -29,7 +29,15 @@ public class AxelMap<K, V> implements Map {
         return get(key) != null;
     }
 
-    public boolean containsValue(Object o) {
+    public boolean containsValue(Object value_x) {
+        V value = (V) value_x;
+        if (value == null) {
+            throw new IllegalArgumentException("Key cannot be null");
+        }
+        for (MyEntry<K, V> bucket : buckets) {
+            if (bucket != null && value.equals(bucket.getValue()))
+                return true;
+        }
         return false;
     }
 

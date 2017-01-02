@@ -72,4 +72,12 @@ public class AppTest
 
 
     }
+
+    public void testContainsValue() throws Exception {
+        Map<Integer, String> map = new AxelMap<Integer, String>();
+        map.put(1, "something");
+        map.put(3, "something3");
+        assertTrue(map.containsValue("something"));
+        assertFalse(map.containsValue("hello there"));
+    }
 }
