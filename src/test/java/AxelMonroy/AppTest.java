@@ -53,8 +53,13 @@ public class AppTest
         map.put(1, "something");
         assertEquals("something", map.get(1));
         map.put(1, "another thing");
-
-
         assertEquals("another thing", map.get(1));
+    }
+
+    public void testEmpty() throws Exception {
+        Map<Integer, String> map = new AxelMap<Integer, String>();
+        assertTrue(map.isEmpty());
+        map.put(1, "something");
+        assertFalse(map.isEmpty());
     }
 }
