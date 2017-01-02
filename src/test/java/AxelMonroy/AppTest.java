@@ -62,4 +62,14 @@ public class AppTest
         map.put(1, "something");
         assertFalse(map.isEmpty());
     }
+
+    public void testContainsKey() throws Exception {
+        Map<Integer, String> map = new AxelMap<Integer, String>();
+        map.put(1, "something");
+        assertTrue(map.containsKey(1));
+        assertFalse(map.containsKey(2));
+        map.put(3, "hello there");
+
+
+    }
 }
