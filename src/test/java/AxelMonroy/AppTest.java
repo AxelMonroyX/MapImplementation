@@ -97,4 +97,17 @@ public class AppTest
         assertFalse(map.isEmpty());
 
     }
+
+    public void testClear() throws Exception {
+        Map<Integer, String> map = new AxelMap<Integer, String>();
+        map.put(1, "something");
+        map.put(2, "other");
+        assertEquals(2, map.size());
+
+        assertFalse(map.isEmpty());
+        map.clear();
+        assertTrue(map.isEmpty());
+        assertEquals(0, map.size());
+
+    }
 }
