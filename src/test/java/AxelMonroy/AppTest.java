@@ -80,4 +80,21 @@ public class AppTest
         assertTrue(map.containsValue("something"));
         assertFalse(map.containsValue("hello there"));
     }
+
+    public void testRemoveByKey() throws Exception {
+        Map<Integer, String> map = new AxelMap<Integer, String>();
+        map.put(1, "something");
+        assertTrue(map.containsKey(1));
+
+        map.remove(1);
+        assertFalse(map.containsKey(1));
+        assertTrue(map.isEmpty());
+
+        map = new AxelMap<Integer, String>();
+        map.put(1, "something");
+        map.put(2, "other");
+        map.remove(1);
+        assertFalse(map.isEmpty());
+
+    }
 }
