@@ -1,4 +1,4 @@
-package github.com.AxelMonroyX;
+package AxelMonroy;
 
 /**
  * Created by axel on 2/01/17.
