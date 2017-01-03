@@ -6,26 +6,36 @@ package AxelMonroy;
  */
 public class MyEntry<K, V> {
     private MyEntry<K, V> next;
-    private final K key;
+    private K key;
     private V value;
 
     public MyEntry(K key, V value) {
         this.key = key;
         this.value = value;
     }
-    public K getKey(){
+
+    public K getKey() {
         return this.key;
     }
-    public void setValue (V value){
-        this.value=value;
+
+    public void setValue(V value) {
+        this.value = value;
     }
-    public V getValue(){
+
+    public V getValue() {
         return this.value;
     }
-    public void setNext(MyEntry<K,V> next){
-        this.next=next;
+
+    public void setNext(MyEntry<K, V> next) {
+        this.next = next;
     }
-    public MyEntry<K, V> getNext(){
+
+    public MyEntry<K, V> getNext() {
         return this.next;
+    }
+
+    @Override
+    public String toString() {
+        return key + "=" + value;
     }
 }
