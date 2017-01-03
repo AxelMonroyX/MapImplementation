@@ -1,7 +1,7 @@
 package AxelMonroy;
 
 import java.util.Collection;
-import java.util.Iterator;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -9,11 +9,11 @@ import java.util.Set;
  * Created by axel on 20/12/16.
  * github.com/AxelMonroyX
  */
-public class AxelMap<K, V> implements Map {
+class AxelMap<K, V> implements Map {
     private MyEntry<K, V>[] buckets;
     private int size = 0;
 
-    public AxelMap() {
+    AxelMap() {
         this.buckets = new MyEntry[10];
     }
 
@@ -106,9 +106,7 @@ public class AxelMap<K, V> implements Map {
     }
 
     public void putAll(Map map) {
-        Iterator<Map.Entry<Object, Object>> it = map.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry<Object, Object> actual = it.next();
+        for (Entry<Object, Object> actual : (Iterable<Entry<Object, Object>>) map.entrySet()) {
             put(actual.getKey(), actual.getValue());
         }
 
@@ -121,11 +119,27 @@ public class AxelMap<K, V> implements Map {
     }
 
     public Set keySet() {
-        return null;
+        Set<K> totalSetOfKeys = new HashSet<K>();
+        for (MyEntry<K, V> bucket : buckets) {
+            if (bucket != null) totalSetOfKeys.add(bucket.getKey());
+        }
+        return totalSetOfKeys;
     }
 
     public Collection values() {
-        return null;
+        Set<V> totalsetOfValues = new HashSet<V>();
+        for (MyEntry<K, V> bucket : buckets) {
+            if (bucket != null) {
+                totalsetOfValues.add(bucket.getValue());
+                MyEntry<K, V> bucketAux = bucket.getNext();
+                while (bucketAux != null) {
+                    totalsetOfValues.add(bucketAux.getValue());
+                    bucketAux = bucketAux.getNext();
+
+                }
+            }
+        }
+        return totalsetOfValues;
     }
 
     public Set<Entry> entrySet() {

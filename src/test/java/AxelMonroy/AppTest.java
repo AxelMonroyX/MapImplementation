@@ -5,7 +5,9 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Unit test for simple App.
@@ -124,6 +126,39 @@ public class AppTest
         assertEquals("value2", map_2.get(2));
         assertFalse(map_2.isEmpty());
         assertEquals(2, map_2.size());
+
+    }
+
+    public void testkeySet() throws Exception {
+        Set<Integer> expectedSetOfKeys = new HashSet<Integer>();
+        expectedSetOfKeys.add(1);
+        expectedSetOfKeys.add(2);
+        expectedSetOfKeys.add(3);
+
+        Map<Integer, String> map = new AxelMap<Integer, String>();
+        assertEquals(new HashSet<Integer>(), map.keySet());
+        map.put(1, "value1");
+        map.put(2, "value2");
+        map.put(3, "value3");
+        assertEquals(expectedSetOfKeys, map.keySet());
+
+    }
+
+    public void testValues() throws Exception {
+        Set<String> expectedSetOfValues = new HashSet<String>();
+        expectedSetOfValues.add("value1");
+        expectedSetOfValues.add("value2");
+        expectedSetOfValues.add("value3");
+
+        Map<Integer, String> map = new AxelMap<Integer, String>();
+        assertEquals(new HashSet<Integer>(), map.keySet());
+        map.put(1, "value1");
+        map.put(2, "value2");
+        map.put(3, "value3");
+        map.put(3, "value3");
+
+        assertEquals(expectedSetOfValues, map.values());
+
 
     }
 }
