@@ -30,7 +30,7 @@ class AxelMap<K, V> implements Map {
     public boolean containsValue(Object value_x) {
         V value = (V) value_x;
         if (value == null) {
-            throw new IllegalArgumentException("Key cannot be null");
+            throw new IllegalArgumentException("Value cannot be null");
         }
         for (MyEntry<K, V> bucket : buckets) {
             if (bucket != null && value.equals(bucket.getValue()))
@@ -41,11 +41,8 @@ class AxelMap<K, V> implements Map {
 
     public Object get(Object key_x) {
         K key = (K) key_x;
-        if (key == null) {
-            throw new IllegalArgumentException("Key cannot be null");
-        }
-        int bucketIndex = key.hashCode() % buckets.length;
-        MyEntry<K, V> entry = buckets[bucketIndex];
+        throwErrorKeyNull(key);
+        MyEntry<K, V> entry = getEntryKey(key);
 
         while (entry != null && !key.equals(entry.getKey())) {
             entry = entry.getNext();
@@ -57,11 +54,9 @@ class AxelMap<K, V> implements Map {
         K key = (K) key_x;
         V value = (V) value_x;
 
-        if (key == null) {
-            throw new IllegalArgumentException("Key cannot be null");
-        }
+        throwErrorKeyNull(key);
         int bucketIndex = key.hashCode() % buckets.length;
-        MyEntry<K, V> entry = buckets[bucketIndex];
+        MyEntry<K, V> entry = getEntryKey(key);
         if (entry != null) {
             boolean done = false;
             while (!done && entry != null) {
@@ -82,14 +77,16 @@ class AxelMap<K, V> implements Map {
         return new MyEntry<K, V>(key, value);
     }
 
+    private MyEntry<K, V> getEntryKey(K key) {
+        int bucketIndex = key.hashCode() % buckets.length;
+        return buckets[bucketIndex];
+    }
+
 
     public Object remove(Object key_x) {
         K key = (K) key_x;
-        if (key == null) {
-            throw new IllegalArgumentException("Key cannot be null");
-        }
-        int bucketIndex = key.hashCode() % buckets.length;
-        MyEntry<K, V> entry = buckets[bucketIndex];
+        throwErrorKeyNull(key);
+        MyEntry<K, V> entry = getEntryKey(key);
 
         while (entry != null && !key.equals(entry.getKey())) {
             entry = entry.getNext();
@@ -140,8 +137,6 @@ class AxelMap<K, V> implements Map {
     }
 
     public Set<MyEntry<K, V>> entrySet() {
-        Set<Entry<K, V>> entrySet1 = null;
-//        Set<MyEntry<K, V>> entrySet = new HashSet<MyEntry<K, V>>();
         Set<MyEntry<K, V>> entrySet = new LinkedHashSet<MyEntry<K, V>>();
 
         for (MyEntry<K, V> bucket : buckets) {
@@ -151,6 +146,11 @@ class AxelMap<K, V> implements Map {
 
         }
         return entrySet;
-//        return null;
+    }
+
+    private void throwErrorKeyNull(Object key) {
+        if (key == null) {
+            throw new IllegalArgumentException("Key cannot be null");
+        }
     }
 }

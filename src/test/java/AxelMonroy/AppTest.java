@@ -178,4 +178,14 @@ public class AppTest
         assertEquals(expectedSet, map.entrySet().toString());
 
     }
+
+    public void testInsertMultiple() throws Exception {
+        Map map = new AxelMap<String, Integer>();
+
+        for (int i = 0; i < 10000; i++) {
+            map.put(i, i);
+        }
+        assertEquals(300,map.get(300));
+        assertTrue(map.containsKey(300));
+    }
 }
