@@ -161,4 +161,21 @@ public class AppTest
 
 
     }
+
+    public void testEntrySet() throws Exception {
+        Map map = new AxelMap<Integer, String>();
+
+        map.put(1, "value1");
+        map.put(2, "value2");
+        map.put(3, "value3");
+
+        HashMap auxExpectedHashMap = new HashMap();
+
+        auxExpectedHashMap.put(1, "value1");
+        auxExpectedHashMap.put(2, "value2");
+        auxExpectedHashMap.put(3, "value3");
+        String expectedSet = auxExpectedHashMap.entrySet().toString();
+        assertEquals(expectedSet, map.entrySet().toString());
+
+    }
 }

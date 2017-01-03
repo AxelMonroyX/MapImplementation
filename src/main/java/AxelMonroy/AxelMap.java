@@ -1,9 +1,6 @@
 package AxelMonroy;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by axel on 20/12/16.
@@ -142,7 +139,18 @@ class AxelMap<K, V> implements Map {
         return totalsetOfValues;
     }
 
-    public Set<Entry> entrySet() {
-        return null;
+    public Set<MyEntry<K, V>> entrySet() {
+        Set<Entry<K, V>> entrySet1 = null;
+//        Set<MyEntry<K, V>> entrySet = new HashSet<MyEntry<K, V>>();
+        Set<MyEntry<K, V>> entrySet = new LinkedHashSet<MyEntry<K, V>>();
+
+        for (MyEntry<K, V> bucket : buckets) {
+
+            if (bucket != null) entrySet.add(bucket);
+
+
+        }
+        return entrySet;
+//        return null;
     }
 }
